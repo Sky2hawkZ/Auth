@@ -2,10 +2,10 @@ import React from 'react';
 import { TextInput, View, Text } from 'react-native';
 
 const Input = ({ label, value, onChangeText, placeholder, isPassword }) => {
-    const { inputStyle, lableStyle, containerStyle } = styles;
+    const { inputStyle, labelStyle, containerStyle } = styles;
     return (
         <View style={containerStyle}>
-            <Text style={lableStyle}>{label}</Text>
+            <Text style={labelStyle}>{label}</Text>
             <TextInput
                 secureTextEntry={isPassword}
                 placeholder={placeholder}
@@ -28,7 +28,7 @@ const styles = {
         flex: 2
 
     },
-    lableStyle: {
+    labelStyle: {
         fontSize: 18,
         paddingLeft: 20,
         flex: 1
