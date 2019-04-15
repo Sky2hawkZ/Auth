@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import firebase from 'firebase';
 import { Header, Button, Spinner, CardSection } from './components/common';
 import LoginForm from './components/LoginForm';
+import InitializeAuthenticationKey from './firebase';
 
 class App extends Component {
     state = { loggedIn: null }
@@ -11,16 +12,11 @@ class App extends Component {
      * Called immediately before mounting occurs, and before Component#render. 
      * Avoid introducing any side-effects or subscriptions in this method.
      */
-    componentWillMount() {
-        firebase.initializeApp({
-            apiKey: 'AIzaSyD2DR0HHqfzh_wGMZHgQW-aOEwdRKLtbEQ',
-            authDomain: 'authentication-e5813.firebaseapp.com',
-            databaseURL: 'https://authentication-e5813.firebaseio.com',
-            projectId: 'authentication-e5813',
-            storageBucket: 'authentication-e5813.appspot.com',
-            messagingSenderId: '647768667951'
-        });
+    componentDidMount() {
+        //Initialize Firebase Authentication key
+        InitializeAuthenticationKey();
 
+        // Check firebase authentication status
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 this.setState({ loggedIn: true });
